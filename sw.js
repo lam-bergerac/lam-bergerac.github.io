@@ -77,8 +77,9 @@ self.addEventListener('fetch', function (e) {
   var url = new URL(requete.url);
   if (url.origin !== self.location.origin) return;
 
-  // Un fichier d'une autre appli du domaine (le Portail EKAYE, ses outils) : on
-  // laisse passer, sans respondWith. Son propre worker fait son travail.
+  // Un fichier qui ne serait pas le nôtre : on laisse passer, sans respondWith.
+  // S'il appartenait un jour à une autre appli de cette origine, son propre
+  // worker ferait son travail sans que celui-ci s'en mêle.
   if (NOTRES.indexOf(url.pathname) === -1) return;
 
   // Réseau d'abord, cache en secours : en ligne, on a toujours la dernière
