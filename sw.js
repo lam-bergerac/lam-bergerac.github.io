@@ -3,30 +3,24 @@
  *
  * Son seul rôle : que le portail S'OUVRE sans réseau, et sache le dire.
  *
- * Différence importante avec le Portail EKAYE : là-bas, deux outils sur trois
- * fonctionnent hors ligne et le portail devait être aussi solide qu'eux. Ici,
- * **aucun outil LAM ne marche sans réseau** — la vente, le comptage et la carte
- * sont des Web Apps Apps Script, les classeurs et l'agenda sont chez Google.
- * Le worker ne rend donc qu'un service : afficher la page, ses tuiles éteintes
- * et le motif de leur extinction, plutôt qu'un écran blanc qui n'apprend rien.
+ * **Aucun outil LAM ne fonctionne sans réseau** — la vente, le comptage et la
+ * carte sont des Web Apps Apps Script, les classeurs et l'agenda sont chez
+ * Google. Le worker ne rend donc qu'un service : afficher la page, ses tuiles
+ * éteintes et le motif de leur extinction, plutôt qu'un écran blanc qui
+ * n'apprend rien.
  *
- * ORIGINE PROPRE : le portail vit sur `lam-bergerac.github.io`, à lui seul. Il a
- * d'abord été publié sous `frederic-aranaz.github.io/lam/`, où il était capté par
- * l'appli EKAYE installée — celle-ci déclare la portée « / » et réclamait donc
- * toute l'origine, au point que le navigateur refusait d'installer LAM. Le
- * déménagement règle cela, et répond surtout à une exigence de Frédéric : les
- * artisans de LAM n'ont pas à tomber sur ses outils EKAYE en raccourcissant l'URL.
- *
- * La liste blanche ci-dessous n'est donc plus indispensable — rien d'autre ne vit
- * sur cette origine. Elle est conservée : elle ne coûte rien, et elle protège si
- * un second outil LAM venait un jour s'installer à côté.
+ * ORIGINE PROPRE : `lam-bergerac.github.io` n'héberge que ce portail. La liste
+ * blanche ci-dessous n'est donc pas indispensable aujourd'hui ; elle est gardée
+ * par principe — un worker n'a aucune raison d'intercepter ce qu'il n'a pas
+ * publié, et elle protégera si un second outil LAM s'installe un jour à côté.
  *
  * À CHAQUE PUBLICATION D'UNE NOUVELLE VERSION DE LA PAGE, incrémenter VERSION.
  * Sans cela, les téléphones qui ont déjà installé le portail continueront de
  * servir l'ancienne indéfiniment : c'est le seul piège de ce fichier.
  */
 
-var VERSION = 'v2';   // v2 : bouton d'installation, consigne iPhone, icônes 192/512 (26/08/2026)
+var VERSION = 'v3';   // v3 : origine propre lam-bergerac.github.io (26/08/2026)
+                      // v2 : bouton d'installation, consigne iPhone, icônes 192/512 (26/08/2026)
                       // v1 : création du portail (26/08/2026)
 var CACHE = 'lam-portail-' + VERSION;
 
@@ -64,10 +58,10 @@ self.addEventListener('activate', function (e) {
     caches.keys()
       .then(function (noms) {
         return Promise.all(noms.map(function (nom) {
-          // Ne supprimer que NOS anciens caches. Précaution héritée de la
-          // cohabitation avec EKAYE, gardée par principe : un worker n'a aucune
-          // raison de vider un cache qu'il n'a pas rempli. C'est exactement le
-          // défaut que le worker d'EKAYE, lui, présente encore.
+          // Ne supprimer que NOS anciens caches : un worker n'a aucune raison de
+          // vider un cache qu'il n'a pas rempli. `caches` est partagé par toute
+          // l'origine, et cette étourderie est un classique — elle éteint le mode
+          // hors ligne d'une appli voisine sans que rien ne le signale.
           if (nom !== CACHE && nom.indexOf('lam-portail-') === 0) return caches.delete(nom);
         }));
       })
