@@ -19,7 +19,8 @@
  * servir l'ancienne indéfiniment : c'est le seul piège de ce fichier.
  */
 
-var VERSION = 'v5';   // v5 : numéro de version déplacé dans le titre (21/11/2026)
+var VERSION = 'v6';   // v6 : date ajoutée au numéro dans le titre (21/11/2026)
+                      // v5 : numéro de version déplacé dans le titre (21/11/2026)
                       //      — le reporter AUSSI dans le titre de index.html
                       // v4 : numéro de version affiché en bas de page (21/11/2026)
                       // v3 : origine propre lam-bergerac.github.io (26/08/2026)
