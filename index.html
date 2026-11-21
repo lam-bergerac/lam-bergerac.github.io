@@ -75,6 +75,14 @@
       letter-spacing: 0.12em;
     }
     .titre p { font-size: 11px; color: rgba(253,235,238,0.68); margin-top: 2px; }
+    /* Numéro de version dans le titre : il dit d'un regard si le téléphone a reçu la mise à jour.
+       Même numéro que VERSION dans sw.js. */
+    .version {
+      display: inline-block; vertical-align: middle; margin-left: 7px;
+      font-size: 10px; font-weight: 600; letter-spacing: .02em;
+      padding: 1px 6px; border-radius: 9px;
+      background: rgba(255,255,255,.18); color: rgba(253,240,242,.92);
+    }
     .etat-reseau {
       margin-left: auto; font-size: 10px; font-weight: 700;
       letter-spacing: 0.04em; text-transform: uppercase;
@@ -249,7 +257,7 @@
         </svg>
       </span>
       <div class="titre">
-        <h1>LAM</h1>
+        <h1>LAM<span class="version" title="Portail v5 du 21/11/2026">v5</span></h1>
         <p>Tous les outils, une seule icône</p>
       </div>
       <span class="etat-reseau" id="etatReseau">En ligne</span>
@@ -441,9 +449,7 @@
         </div>
       </div>
 
-      <p class="pied">L'Art et la Matière en Périgord — Bergerac<br>
-        <!-- Même numéro que VERSION dans sw.js : il dit si le téléphone a reçu la mise à jour. -->
-        Portail v4 · 21/11/2026</p>
+      <p class="pied">L'Art et la Matière en Périgord — Bergerac</p>
 
     </main>
   </div>
