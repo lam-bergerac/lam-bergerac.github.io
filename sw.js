@@ -19,7 +19,9 @@
  * servir l'ancienne indéfiniment : c'est le seul piège de ce fichier.
  */
 
-var VERSION = 'v3';   // v3 : origine propre lam-bergerac.github.io (26/08/2026)
+var VERSION = 'v4';   // v4 : numéro de version affiché en bas de page (21/11/2026)
+                      //      — le reporter AUSSI dans le pied de index.html
+                      // v3 : origine propre lam-bergerac.github.io (26/08/2026)
                       // v2 : bouton d'installation, consigne iPhone, icônes 192/512 (26/08/2026)
                       // v1 : création du portail (26/08/2026)
 var CACHE = 'lam-portail-' + VERSION;
